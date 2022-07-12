@@ -1,37 +1,39 @@
-const fs = require ('fs'); //file system
-                            //importar el modulo fs
-//06-ejemplo.txt -> Hola
+const fs = require('fs'); // file system
+                          // Importar modulo fs
+// 06-ejemplo.txt -> Hola
 console.log('PRIMERO');
-//1) Leer archivo :06-ejemplo.txt, luego imprimir en consola
-//2) despues del paso 1, leer archivo: 01-variables.js, luego imprimir en consola
-//3) Crear un nuevo archivo llamdo 06-nuevo-archivo.txt con el contenido de los otros dos archivos
+// 1) Leer archivo:06-ejemplo.txt, luego imprimir en consola
+// 2) Despues del paso 1, Leer archivo:01-variables.js, luego imprimir en consola
+// 3) Crear un nuevo archivo llamaddo 06-nuevo-archivo.txt con el contenido de los otros dos archivos.
+
 
 fs.readFile(
-    './06-ejemplo.txt', //1
-    'utf-8',
+    './06-ejemplo.txt', // Nombre o path del archivo
+    'utf-8', // codificacion
     (errorLecturaPrimerArchivo, contenidoPrimerArchivo) => {
         if(errorLecturaPrimerArchivo){
+            console.error(errorLecturaPrimerArchivo);
             throw new Error('Error leyendo primer archivo');
-        }else {
-            //console.log('contenido:', contenido);
+        }else{
+
             fs.readFile(
-                './01-variables.js',
-                'utf-8',
+                './01-variables.js', // Nombre o path del archivo
+                'utf-8', // codificacion
                 (errorLecturaSegundoArchivo, contenidoSegundoArchivo) => {
-                    if(errorLecturaPrimerArchivo){
-                        throw new Error('Error leyendo segundo archivo');
-                    }else {
-                        console.log(contenidoPrimerArchivo, contenidoSegundoArchivo);
-                        const contenidonuevo = contenidoPrimerArchivo + contenidoSegundoArchivo;
+                    if(errorLecturaSegundoArchivo){
+                        console.error(errorLecturaSegundoArchivo);
+                        throw new Error('Error leyendo primer archivo');
+                    }else{
+                        const nuevoContenido = contenidoPrimerArchivo + contenidoSegundoArchivo;
                         fs.writeFile(
                             './06-nuevo-archivo.txt',
-                            contenidonuevo,
+                            nuevoContenido,
                             (errorEscritura)=>{
                                 if(errorEscritura){
-                                    console.log(errorEscritura);
-                                }
-                                else{
-                                    console.log('ok');
+                                    console.error(errorEscritura);
+                                    throw new Error('Error escribiendo nuevo archivo');
+                                }else{
+                                    console.log('Completado');
                                 }
                             }
                         );
@@ -39,6 +41,8 @@ fs.readFile(
                 }
             );
         }
+
     }
 );
+
 console.log('TERCERO');

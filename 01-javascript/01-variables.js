@@ -1,7 +1,7 @@
 // 01-javascript/
 // Mutables e Inmutables
 
-//Mutables
+// Mutables
 var numeroUno = 1;
 let numeroDos = 2;
 numeroUno = 5;
@@ -9,19 +9,23 @@ numeroDos = 8;
 numeroUno = false;
 numeroDos = true;
 
-//Inmutables
+// Inmutables
 const configuracionArchivos = "PDF";
 // configuracionArchivos = "XML";
-// Vamos a preferir CONST> LET > NUNCA VAR!
+// Vamos a preferir CONST > LET > NUNCA VAR!
+
 
 // Tipos de variables
-const numero = 1; //number
-const sueldo = 1.2; //number
-const texto = "Alxander"; //string
-const apellido = "Vargas"; //string
-const booleanooo = false; //boolean
-const hijos = null; //object
-const zapatos = undefined; //undefined
+const numero = 1; // number
+const sueldo = 1.2; // number
+const texto = "Adrian"; // string
+const apellido = 'Eguez'; // string
+const booleanooo = false; // boolean
+const hijos = null; // object
+const zapatos = undefined; // undefined
+
+
+
 
 console.log(typeof numero);
 console.log(typeof sueldo);
@@ -30,107 +34,119 @@ console.log(typeof apellido);
 console.log(typeof booleanooo);
 console.log(typeof hijos);
 console.log(typeof zapatos);
-console.log(typeof Number(  "asd"));//number
-console.log(Number("asd"));//NaN
+console.log(typeof Number("asd")); // number
+console.log(Number("asd")); // NaN
 
-//Truty/Falsy
-if(true===true){
-    console.log("Es verdadero");//!
-}else{
-    console.log("Es falso");
-}
-if (true===false){
-    console.log("Es verdadero")
-}else{
-    console.log("Es falso");//!
-}
-if(""){
-    console.log("string vacio Es verdadero");
-}else{
-    console.log("string vacio es Falsy");
-}
 
-if ("Alexander"){
-    console.log("String con datos es trusty");
-}else {
-    console.log("String con datos Falsy")
+// Truty Falsy
+if (true === true) {
+    console.log("Es verdadero"); //!
+} else {
+    console.log("Es Falso");
 }
-
+if (true === false) {
+    console.log("Es verdadero");
+} else {
+    console.log("Es Falso"); //!
+}
+if ("") {
+    console.log("String vacio Es verdadero");
+} else {
+    console.log("String vacio Es Falsy");
+}
+if ("Adrian") {
+    console.log("String con datos Es truty");
+} else {
+    console.log("String con datos Falso");
+}
 if(-1){
-    console.log("Negativos Es trusty");
-}else {
-    console.log("Negativos es falsy")
-}
-
-if(0){
-    console.log("Cero es Trusty");
+    console.log("Negativos Es truty");
 }else{
-    console.log("Cero es Falsy");
+    console.log("Negativos Es Falso");
 }
-
+if(0){
+    console.log("Cero Es truty");
+}else{
+    console.log("Cero Es Falso");
+}
 if(1){
-    console.log("Positivos es trusty");
-}else {
-    console.log("cero es falsy");
+    console.log("Positivos Es truty");
+}else{
+    console.log("Positivos Es Falso");
+}
+if(null){
+    console.log("Null Es truty");
+}else{
+    console.log("Null Es Falso"); // Falsy
+}
+if(undefined){
+    console.log("Undefined Es truty");
+}else{
+    console.log("Undefined Es Falso");  // Falsy
 }
 
-//3) x -> "var"
-//objetos Js(JSON)
-const Alexander ={
-    "nombre": "Alexander",//llave: valor
-    'apellido': 'Vargas',
+// Orden de importancia
+// 1) "const"
+// 2) "let"
+// 3) X -> "var"
+// Objetos Js (JSON)
+const adrian = {
+    "nombre": "Adrian", // llave: valor,
+    'apellido': 'Eguez',
     edad: 32,
     hijos: null,
     zapatos: undefined,
     casado: false,
     ropa: {
-        color:'plomo',
-        talla:'40',
+        color: 'plomo',
+        talla: '40',
     },
-    mascotas:['Cachetes','Pequitas','Panda'],
+    mascotas: ['Cachetes', 'Pequitas', 'Panda'],
 };
-console.log(Alexander);
+console.log(adrian);
 
-//Acceder a las propiedades del objeto
-Alexander.nombre; //"Alexander"
-Alexander.apellido; //"Vargas"
-Alexander["nombre"]; //"Alexander"
-//Cambiar valores
-Alexander.nombre = "Sebastian";
-Alexander["nombre"] = "Alexander";
-//Crear nuevos atributos o metodos dentro del objeto
-Alexander.sueldo; //undefined
-console.log(Alexander.sueldo);
-Alexander.sueldo = 1.2;
-console.log(Alexander.sueldo); //1.2
-Alexander["gastos"] = 0.8;
-console.log(Alexander.gastos);
-console.log(Alexander);
 
-//Borrar el valor de una propiedad
-Alexander.nombre=undefined;
-console.log(Alexander);
-console.log(Object.keys(Alexander));
-console.log(Object.values(Alexander));
-//Delete la llave y el valor dentro del objeto
-delete Alexander.nombre; //Eliminar la llave "Nombre"
-console.log(Alexander);
+// Acceder a las propiedades del objeto
+adrian.nombre; // "Adrian"
+adrian.apellido; // 'Eguez'
+adrian["nombre"]; // "Adrian"
+// Cambiar valores
+adrian.nombre = "Vicente";
+adrian["nombre"] = "Adrian";
+// Crear nuevos atributos o metodos dentro del objeto
+adrian.sueldo; // undefined
+console.log(adrian.sueldo);
+adrian.sueldo = 1.2;
+console.log(adrian.sueldo); // 1.2
+adrian["gastos"] = 0.8;
+console.log(adrian.gastos); // 0.8
+console.log(adrian);
+// Borrar el valor de una propiedad
+adrian.nombre = undefined;
+console.log(adrian);
+console.log(Object.keys(adrian));
+console.log(Object.values(adrian));
+// DELETE la llave y el valor dentro del objeto
+delete adrian.nombre; // Eliminar la llave "nombre"
+console.log(adrian);
 
-//Variables por valor o referencia?
-//Variables por valor de JS son las primitivas: number, string, boolean
 
-let edadAlex = 32;
-let edadSebas = edadAlex; //Guardamos una primitiva en otra variable
-                            //Variables por valor
-console.log(edadAlex); //32
-console.log(edadSebas); //32
-edadAlex = edadAlex +1;
-console.log(edadAlex); //33
-console.log(edadSebas); //32
 
-//Variables por referencia: object ({},{})
-let notas={
-    total:10
+// Variables por valor o referencia?
+// Variables por valor en JS son las primitivas: number, string, boolean
+
+let edadAdrian = 32;
+let edadVicente = edadAdrian; // Guardamos una primitiva en otra variable
+                              // Variables por valor
+console.log(edadAdrian); // 32
+console.log(edadVicente); // 32
+edadAdrian = edadAdrian + 1;
+console.log(edadAdrian); // 33
+console.log(edadVicente); // 32
+
+// Variables por referencia: object ({},[])
+let notas = {
+    total: 10
 };
 let notasSegundoBimestre = notas;
 notasSegundoBimestre.total = notasSegundoBimestre.total + 1;
@@ -139,13 +155,25 @@ console.log(notasSegundoBimestre);
 notas.total = notas.total + 1;
 console.log(notas);
 console.log(notasSegundoBimestre);
-
-//Como clonar objetos
-let notasTercerBimestre = Object.assign({},notas);
-//Object.assign([],arreglo);
+// Como clonar objetos
+let notasTercerBimestre = Object.assign({}, notas);
+// Object.assign([], arreglo);
 notasTercerBimestre.total = notasTercerBimestre.total + 1;
-//console.log();//salto de linea
-console.log(notas);
-console.log(notasSegundoBimestre);
-console.log(notasTercerBimestre);
+console.log('notas', notas);
+console.log('notasSegundoBimestre', notasSegundoBimestre);
+console.log('notasTercerBimestre', notasTercerBimestre);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

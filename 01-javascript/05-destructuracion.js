@@ -1,29 +1,28 @@
-//05-destructuracion.js
+// 05-destructuracion.js
 
-//Destructuracion de objetos
-const alexander ={
-    nombre:"Alexander"
+// Destructuracion de objetos
+const adrian = {
+    nombre: "Adrian"
 };
-
 const carolina = {
     nombre: "Carolina",
     apellido: "Eguez"
 };
-const alexanderCarolina ={//creando una nueva referencia
-    ...carolina, //1el orden es importante para propiedadees que se repiten
-    ...alexander,
+const adrianCarolina = { // Creando una nueva referencia
+    ...carolina,    // 1 El orden es importante para propiedades que se repiten
+    ...adrian,      // 2 El ultimo reemplaza a los anteriores
 };
-console.log('alexanderCarolina',alexanderCarolina);
+console.log('adrianCarolina', adrianCarolina);
 
-//destruturacion de arreglos
-const arregloUno = [1,2,3,4,5];
-const arregloDos = [6,7,8,9,10];
+// Destructuracion de arreglos
+const arregloUno = [1, 2, 3, 4, 5];
+const arregloDos = [6, 7, 8, 9, 10];
 const superArreglo = [
-    ...arregloUno, //el orden importa
+    ...arregloUno, // El orden importa
     ...arregloDos,
 ];
-console.log('superArreglo',superArreglo);
-console.log(...superArreglo); //console.log(1,2,3,4,5...,10);
+console.log('superArreglo', superArreglo);
+console.log(...superArreglo); // console.log(1,2,3,4,5...,10);
 console.log(1,2,3);
 console.log(1);
 console.log(2);

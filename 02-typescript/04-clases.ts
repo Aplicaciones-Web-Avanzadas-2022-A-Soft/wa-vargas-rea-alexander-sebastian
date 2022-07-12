@@ -1,40 +1,48 @@
 // 04-clases.ts
-class Persona{
+class Persona {
     public nombre: string;
-    public apellido: string;
+    public apellido: string
     static nombreReferencial: string = 'Humano';
-    protected nombreYApellido = '';//Duck Typing -> string
+    protected nombreYApellido = ''; // Duck Typing -> string
     constructor(
         nombreParametro: string,
         apellidoParametro: string,
     ) {
         this.nombre = nombreParametro;
         this.apellido = apellidoParametro;
-        this.nombreYApellido = nombreParametro + '' + apellidoParametro;
+        this.nombreYApellido = nombreParametro + ' ' + apellidoParametro;
     }
+
     private mostrarNombreApellido(): string {
         return this.nombreYApellido;
     }
 }
 
-class Usuario extends Persona{
+
+
+class Usuario extends Persona {
     constructor(
-        nombreParametro: string,//Parametros del constructor
-        apellidoParametro: string,//Parametros del constructor
-        public cedula: string, //modificador de acceso -> Propiedad de la clase
-        public estadoCivil: string, //modificador de acceso -> Propiedad de la clase
+        nombreParametro: string, // Parametros del constructor
+        apellidoParametro: string, // Parametros del constructor
+        public cedula: string, // Modificador acceso -> Propiedad de la clase
+        public estadoCivil: string, // Modificador acceso -> Propiedad de la clase
     ) {
-        super(nombreParametro,apellidoParametro);
+        super(nombreParametro, apellidoParametro);
     }
 }
-const alexander = new Usuario(
-    'Alexander',
-    'Vargas',
-    '1719790220',
-    'Soltero'
+const adrian = new Usuario(
+    'Adrian',
+    'Eguez',
+    '1718137159',
+    'soltero'
 );
-alexander.nombre;
-alexander.apellido;
-alexander.cedula;//'1719790220'
-alexander.estadoCivil;//'Soltero'
+adrian.nombre;
+adrian.apellido;
+adrian.cedula; // '1718137159'
+adrian.estadoCivil; // 'soltero'
+
+
+
+
+
 

@@ -1,34 +1,50 @@
-//07-promesas.js
-const fs =require('fs');
+// 07-promesas.js
+const fs = require('fs');
 
-function promesaEsPar(numero){
-    const miPrimerPromesa =new Promise(//definicion de la promesa
+function promesaEsPar(numero) {
+    const miPrimerPromesa = new Promise( // Definicion de la promesa
         (
-            resolve,//funcion return
-            reject//funcion throw
-        )=>{
-            if (numero % 2==0){
-                resolve(numero); //return numero -> resolve() : return undefined
-            }else{
-                reject ('no es par=('); //throw 'No es par :('
+            resolve, // funcion return
+            reject // funcion throw
+        ) => {
+            if (numero % 2 == 0) {
+                resolve(numero); // return numero -> resolve() : return undefined
+            } else {
+                reject('No es par =('); //  Throw 'No es par :('
             }
         }
     )
-    return miPrimerPromesa;
+    return miPrimerPromesa
 }
-promesaEsPar(3)
-    .then(
-        (respuesta) =>{
-            console.log('Respuesta: ',respuesta);
+
+function promesaElevarAlCuadrado(numero) {
+    const miPrimerPromesa = new Promise( // Definicion de la promesa
+        (resolve, reject) => {
+            const numeroElevadoAlCuadrado = Math.pow(numero, 2);
+            resolve(numeroElevadoAlCuadrado); // return numeroElevadoAlCuadrado
+        }
+    );
+    return miPrimerPromesa
+}
+
+promesaEsPar(4)
+    .then( // return
+        (numeroPar)=>{
+            return promesaElevarAlCuadrado(numeroPar)// OTRA PROMESA
         }
     )
-    .catch(
-        (error) => {
-            console.error('Error: ',error);
+    .then( // return
+        (numeroParElevadoAlCuadrado)=>{
+            console.log('numeroParElevadoAlCuadrado', numeroParElevadoAlCuadrado)
         }
     )
-    .finally(
+    .catch( // throw
+        (error)=>{
+            console.error('Error: ', error);
+        }
+    )
+    .finally( // finally
         ()=>{
-            console.info('info');
+            console.info('Fin');
         }
     );
