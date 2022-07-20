@@ -1,0 +1,1 @@
+[{"id":"1","nombre":"ps4","Marca":"sony","Tipo":"escritorio","anio":2015,"precio":399,"peso":350,"videojuegos":[],"tipo":"Consola"}]
