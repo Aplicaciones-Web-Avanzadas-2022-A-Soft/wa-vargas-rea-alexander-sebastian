@@ -3,21 +3,24 @@ import {useState} from "react";
 import {useForm, Controller} from "react-hook-form";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {toast} from "react-hot-toast";
-import {BlockTitle, List, ListInput} from "konsta/vue";
+import {List,ListInput} from "konsta/react";
+import AccesibilityIcon from "@mui/icons-material/Accessibility";
 
 type FormularioEjemplo = {
     nombre: string;
     estadoCivil: string;
+    tvShow: string;
 }
 
 export default function Formulario(){
-    const [nombre, setNombre] = useState('Christian');
+    const [nombre, setNombre] = useState('Alexander');
 
     const {control, register, handleSubmit, formState: {errors, isValid}} = useForm<FormularioEjemplo>(
         {
             defaultValues:{
-                nombre: 'Chris',
+                nombre: 'Alex',
                 estadoCivil: '',
+                tvShow: '',
             },
             mode: 'onTouched'
         }
@@ -31,12 +34,11 @@ export default function Formulario(){
 
     const controlarSubmitRHF = (data) => {
         console.log('data', data);
-        toast('Good Job',{
-            icon: '🖕'
+        toast('Good Job!',{
+            icon: '🤬',
         });
         toast.success('Bien');
-        toast.error('Bien');
-
+        toast.error('Mal');
     }
 
     return(
@@ -50,20 +52,20 @@ export default function Formulario(){
                                className="form-control"
                                placeholder="EJ: Christian"
                                id="nombre"
-                            {...register('nombre',{
-                                required: {value: true, message: 'Requerido'},
-                                maxLength: {value: 20, message: 'Longitud máxima 20'},
-                                minLength: {value: 5, message: 'Longitud mínima 5'},
-                                validate:{
-                                    soloNumeros: (valorActual)=>{
-                                        if(Number.isNaN(+valorActual)){
-                                            return 'Ingrese solo números';
-                                        }else{
-                                            return true;
-                                        }
-                                    }
-                                }
-                            })}
+                               {...register('nombre',{
+                                   required: {value: true, message: 'Requerido'},
+                                   maxLength: {value: 20, message: 'Longitud máxima 20'},
+                                   minLength: {value: 5, message: 'Longitud mínima 5'},
+                                   validate:{
+                                       soloNumeros: (valorActual)=>{
+                                           if(Number.isNaN(+valorActual)){
+                                               return 'Ingrese solo números';
+                                           }else{
+                                               return true;
+                                           }
+                                       }
+                                   }
+                               })}
                                aria-describedby="nombreHelp"/>
                         <div id="nombreHelp" className="form-text">
                             Ingresa tu nombre.
@@ -75,70 +77,60 @@ export default function Formulario(){
                         }
                     </div>
                     <div className="mb-3">
+                        <List >
+
+                                <Controller
+                                    control={control}
+                                    rules={{ required: {value: true, message: 'TV Show requerido'}}}
+                                    name="tvShow"
+                                    render={({field: {onChange, value, onBlur,}}) => {
+                                        return <ListInput
+                                            label="TV Show"
+                                            type="text"
+                                            placeholder="Your favorite TV show"
+                                            info="Type something to see clear button"
+                                            media = {<AccesibilityIcon/>}
+                                            onBlur={onBlur}
+                                            value={value}
+                                            onChange={onChange}
+                                        />
+                                    }}
+                                />
+
+                        </List>
+                        {errors.tvShow &&
+                            <div className="alert alert-warning" role="alert">
+                                Tiene errores {errors.tvShow.message}
+                            </div>
+                        }
+                    </div>
+                    <div className="mb-3">
                         <FormControl fullWidth>
                             <InputLabel id="estadoCivilLabelId">Estado Civil</InputLabel>
                             <Controller
                                 control={control}
-                                rules={{required: {value: true, message: 'Estado C. requerido'}}}
+                                rules = {{required: {value: true, message: 'Estado Civil Requerido'}}}
                                 name="estadoCivil"
                                 render={({ field: { onChange, value, onBlur} }) => {
                                     return <Select
-                                        labelId="estadoCivilLabelIdn<"
-                                        id="estadoCivil"
+                                        labelId="estadoCivilLabelId"
+                                        id="estadoCivilId"
                                         onBlur={onBlur}
                                         value={value}
                                         label="Estado Civil"
                                         onChange={onChange}
                                     >
-                                        <MenuItem value={''}>Seleccione uno</MenuItem>
                                         <MenuItem value={'casado'}>Casado</MenuItem>
                                         <MenuItem value={'soltero'}>Soltero</MenuItem>
                                     </Select>
                                 }}
                             />
+                            {errors.estadoCivil &&
+                                <div className="alert alert-warning" role="alert">
+                                    Errores: {errors.estadoCivil.message}
+                                </div>
+                            }
                         </FormControl>
-                        <BlockTitle>Floating Labels</BlockTitle>
-                        <List hairlines={hairlines}>
-                            <ListInput
-                                label="Name"
-                                floatingLabel
-                                type="text"
-                                placeholder="Your name"
-                                media={<DemoIcon />}
-                            />
-
-                            <ListInput
-                                label="Password"
-                                floatingLabel
-                                type="password"
-                                placeholder="Your password"
-                                media={<DemoIcon />}
-                            />
-
-                            <ListInput
-                                label="E-mail"
-                                floatingLabel
-                                type="email"
-                                placeholder="Your e-mail"
-                                media={<DemoIcon />}
-                            />
-
-                            <ListInput
-                                label="URL"
-                                floatingLabel
-                                type="url"
-                                placeholder="URL"
-                                media={<DemoIcon />}
-                            />
-
-                            <ListInput
-                                label="Phone"
-                                floatingLabel
-                                type="tel"
-                                placeholder="Your phone number"
-                                media={<DemoIcon />}
-                            />
-                        </List>
                     </div>
                     <button type="submit"
                             disabled={!isValid}
