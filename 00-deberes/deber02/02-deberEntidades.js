@@ -141,7 +141,7 @@ async function crearConsola(){
             console.log('\n\nYa existe una Consola con ese identificador.\n')
         }else{
             respuestas.videojuegos = [];
-            respuestas.tipo = 'Consola';
+            //respuestas.tipo = 'Consola';
             arregloDatos.push(respuestas);
             console.log('\n\nConsola creada con éxito.\n')
             await leerConsola();
@@ -196,7 +196,7 @@ async function actualizarConsola(){
                     message: 'Ingresa el nombre de la consola:'
                 },
                 {
-                    type: '0input',
+                    type: 'input',
                     name: 'Marca',
                     message: 'Ingresa la marca de la consola:'
                 },
@@ -474,24 +474,28 @@ async function menu(){
                     return;
                 case 1:
                     await crearConsola();
+                    await guardarDatos();
                     break;
                 case 2:
                     leerConsola();
                     break;
                 case 3:
                     await actualizarConsola();
+                    await guardarDatos();
                     break;
                 case 4:
                     await borrarConsola();
                     break;
                 case 5:
                     await crearVideojuego();
+                    await guardarDatos();
                     break;
                 case 6:
                     leerVideojuego();
                     break;
                 case 7:
                     await actualizarVideojuego();
+                    await guardarDatos();
                     break;
                 case 8:
                     await borrarVideojuego();
